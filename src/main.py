@@ -1,5 +1,5 @@
 from CocoaZip.ZipUtility import ZipUtility
-from CocoaZip.CocoaZipBoard import CocoaZipBoard
+from CocoaZip.GUI.CocoaZipBoard import CocoaZipBoard
 
 import sys
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if (len(sys.argv) == 1) or (args.gui and len(sys.argv == 2)):
-        window = CocoaZipBoard(False)
+        window = CocoaZipBoard()
         window.MainLoop()
         sys.exit()
 
