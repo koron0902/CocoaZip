@@ -1,5 +1,4 @@
 from CocoaZip.ZipUtility import ZipUtility
-from CocoaZip.GUI.CocoaZipBoard import CocoaZipBoard
 
 import sys
 
@@ -17,7 +16,6 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--password', help = "Encrypt archive using password if you need")
     parser.add_argument('-g', '--gen_password', action = 'store_true', help = 'Generate password(length = 12)')
     parser.add_argument('--override', action = 'store_true', help = "Allow override if exists archive, otherwise raise error")
-    parser.add_argument('--gui', type = bool, help = 'Display GUI')
 
     args = parser.parse_args()
 
@@ -32,14 +30,13 @@ if __name__ == "__main__":
         password = zipUtil.PasswordGeneration()
     elif args.password is not None:
         password = args.password
-    print(password)
+
     if args.folder is not None:
         for d in args.folder:
             zipUtil.AddFolder(d)
-            
+
     if args.file is not None:
         for f in args.file:
             zipUtil.AddFile(f)
 
     zipUtil.Compress(archive = args.output, password = password, override = args.override)
-
