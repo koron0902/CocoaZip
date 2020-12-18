@@ -7,8 +7,8 @@ class mainWindow(wx.Frame):
         self.MainLayout = wx.BoxSizer(wx.HORIZONTAL)
         self.LeftBox = wx.BoxSizer(wx.VERTICAL)
         self.RightBox = wx.BoxSizer(wx.VERTICAL)
-        self.panel = wx.Panel(self, wx.ID_ANY)
-        self.panel.SetBackgroundColour('#FFFFFF')
+        self.panel = wx.Panel(self, wx.ID_ANY, size = (1000, 500))
+        self.panel.SetBackgroundColour('#000000')
 
 
         self.createMenu()
@@ -44,7 +44,8 @@ class mainWindow(wx.Frame):
         encryption = wx.CheckBox(self.panel, wx.ID_ANY, '暗号化する')
         visible = wx.CheckBox(self.panel, wx.ID_ANY, 'パスワードを表示する')
         generate = wx.Button(self.panel, label="パスワードの生成")
-        self.password = wx.TextCtrl(self.panel)
+        self.password = wx.TextCtrl(self.panel, style =  wx.SIMPLE_BORDER)
+        #self.password.SetBackgroundColour("#9F9F9F")
         generate.Bind(wx.EVT_BUTTON, generation)
         buttonSizer.Add(encryption)
         buttonSizer.Add(visible)
@@ -108,7 +109,7 @@ class mainWindow(wx.Frame):
     def createList(self):
         sizer = wx.BoxSizer(wx.VERTICAL)
         label = wx.StaticText(self.panel, -1, "圧縮対象", style = wx.ALIGN_CENTER | wx.DOUBLE_BORDER)
-        self.CompressTarget = wx.ListBox(self, wx.ID_ANY, style = wx.DOUBLE_BORDER)
+        self.CompressTarget = wx.ListBox(self.panel, wx.ID_ANY, style = wx.DOUBLE_BORDER)
         sizer.Add(label, flag = wx.EXPAND, border = 10)
         sizer.Add(self.CompressTarget, wx.EXPAND, wx.EXPAND)
 
