@@ -8,7 +8,8 @@ if __name__ == "__main__":
             prog='CocoaZip', 
             usage='Zip Archiver', 
             description='description', 
-            epilog='end')
+            epilog='end',
+            add_help = True)
 
     parser.add_argument('-f', '--file', nargs='*', help = 'Add File to Archive(can specify like a list)')
     parser.add_argument('-d', '--folder', nargs='*', help = 'Add Folder to Archive(can specify like a list)')
@@ -18,11 +19,6 @@ if __name__ == "__main__":
     parser.add_argument('--override', action = 'store_true', help = "Allow override if exists archive, otherwise raise error")
 
     args = parser.parse_args()
-
-    if (len(sys.argv) == 1) or (args.gui and len(sys.argv == 2)):
-        window = CocoaZipBoard()
-        window.MainLoop()
-        sys.exit()
 
     zipUtil = ZipUtility()
     password = None
