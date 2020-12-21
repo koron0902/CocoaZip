@@ -12,7 +12,7 @@ class ZipUtility():
 
     def __init__(self):
         pass
-        
+
     def AddFile(self, f: str, base: str = os.sep)->None:
         if not pathlib.Path(f).exists():
             print('"{}" does NOT exist. Skip process.....'.format(f))
@@ -59,5 +59,5 @@ class ZipUtility():
         if override or not path.exists():
             pathlib.Path(temp).replace(path)
         else:
-            print('"{}" is already exists. Use --override option to override it.'.format(f))
+            print('"{}" is already exists. Use --override option to override it.'.format(archive))
         
