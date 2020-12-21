@@ -11,7 +11,8 @@ class ZipUtility():
     zipLayout = []
 
     def __init__(self):
-
+        pass
+        
     def AddFile(self, f: str, base: str = os.sep)->None:
         if not pathlib.Path(f).exists():
             print('"{}" does NOT exist. Skip process.....'.format(f))
