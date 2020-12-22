@@ -21,7 +21,7 @@ class ZipUtility():
             self.zipLayout.append(base)
 
     def AddFiles(self, files: list, bases: list = None)->None:
-        if bases is None:
+        if bases is None or len(files) != len(bases):
             bases = [os.sep for i in range(len(files))]
 
         for f, b in zip(files, bases):
@@ -40,6 +40,10 @@ class ZipUtility():
 
         elif path.is_dir():
             files = [str(item) for item in pathlib.Path(folder).glob("**/*") if item.is_file()]
+
+            if len(files) == 0:
+                print('"{}" has no files. Skip process.....'.format(folder))
+                return
             bases = [os.path.dirname(item)[folder.rfind(os.sep) + 1:] + os.sep for item in files]
             self.AddFiles(files, bases)
 
@@ -47,6 +51,9 @@ class ZipUtility():
         return salt + ''.join(secrets.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(size))
 
     def Compress(self, archive: str = "Archive.zip", password:str = None, override = False)->None:
+        if len(self.targetFiles) == 0:
+            print('No files added to archive....')
+            return
         temp = os.path.join(tempfile.gettempdir(), "Archive.zip")
         pyminizip.compress_multiple(self.targetFiles, self.zipLayout, temp, password, 0)
 
