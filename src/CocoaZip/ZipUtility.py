@@ -21,7 +21,7 @@ class ZipUtility():
             self.zipLayout.append(base)
 
     def AddFiles(self, files: list, bases: list = None)->None:
-        if bases is None:
+        if bases is None or len(files) != len(bases):
             bases = [os.sep for i in range(len(files))]
 
         for f, b in zip(files, bases):
