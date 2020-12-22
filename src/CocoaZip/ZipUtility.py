@@ -40,6 +40,10 @@ class ZipUtility():
 
         elif path.is_dir():
             files = [str(item) for item in pathlib.Path(folder).glob("**/*") if item.is_file()]
+
+            if len(files) == 0:
+                print('"{}" has no files. Skip process.....'.format(folder))
+                return
             bases = [os.path.dirname(item)[folder.rfind(os.sep) + 1:] + os.sep for item in files]
             self.AddFiles(files, bases)
 
