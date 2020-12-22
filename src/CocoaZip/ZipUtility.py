@@ -51,6 +51,9 @@ class ZipUtility():
         return salt + ''.join(secrets.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(size))
 
     def Compress(self, archive: str = "Archive.zip", password:str = None, override = False)->None:
+        if len(self.targetFiles) == 0:
+            print('No files added to archive....')
+            return
         temp = os.path.join(tempfile.gettempdir(), "Archive.zip")
         pyminizip.compress_multiple(self.targetFiles, self.zipLayout, temp, password, 0)
 
