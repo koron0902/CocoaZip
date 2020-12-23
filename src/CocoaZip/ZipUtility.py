@@ -54,6 +54,9 @@ class ZipUtility():
         if len(self.targetFiles) == 0:
             print('No files added to archive....')
             return
+            
+        if password is not None:
+            print('"{}" is encrypted with password "{}"'.format(archive, password))
         temp = os.path.join(tempfile.gettempdir(), "Archive.zip")
         pyminizip.compress_multiple(self.targetFiles, self.zipLayout, temp, password, 0)
 
@@ -67,4 +70,3 @@ class ZipUtility():
             pathlib.Path(temp).replace(path)
         else:
             print('"{}" is already exists. Use --override option to override it.'.format(archive))
-        
